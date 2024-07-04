@@ -4,7 +4,7 @@ from meetings.models import Meeting
 
 
 def welcome(request):
-    return render(request, template_name="website/welcome.html", context={"num_meetings": Meeting.objects.count()})
+    return render(request, template_name="website/welcome.html", context={"meetings": Meeting.objects.all()})
 
 
 def about(request):

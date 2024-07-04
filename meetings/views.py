@@ -1,11 +1,11 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from models.meetings import Meeting
-
-
-# Create your views here.
+from django.shortcuts import render, get_object_or_404
+from meetings.models import Meeting, Room
 
 
 def detail(request, id):
-    meeting = Meeting.objects.get(pk=id)
-    return render(request, template_name="website.html", context={"meeting": meeting})
+    meeting = get_object_or_404(Meeting, pk=id)
+    return render(request, template_name="website.html", context={"meetings": meeting})
+
+
+def rooms_list(request):
+    return render(request, template_name='meetings/rooms_list.html', context={"rooms": Room.objects.all()})
